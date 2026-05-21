@@ -348,7 +348,7 @@ function Work() {
             <div className="work__r-k">Location</div>
             <div className="work__r-v">Seattle, WA</div>
             <div className="work__r-k">Type</div>
-            <div className="work__r-v">Part-time → Full-time</div>
+            <div className="work__r-v">Full-time</div>
           </div>
         </div>
       </div>
