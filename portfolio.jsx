@@ -452,6 +452,134 @@ function Work() {
 }
 
 // ============================================================
+//  PROJECTS
+// ============================================================
+const PROJECTS = [
+  { id: "proj-deepsqueak", no: "01", domain: "Neuroscience / Data", title: "DeepSqueak Pipeline",
+    front: "MATLAB pipeline for high-throughput mouse audio analysis.",
+    back: "Developed a MATLAB pipeline that bypasses the DeepSqueak GUI to enable high-throughput analysis of mouse ultrasonic vocalization audio files. Automates batch processing — significantly faster and more scalable for research teams.",
+    meta: ["2024–2026", "MATLAB · DeepSqueak", "Developer"], github: "https://github.com/Zuriahn-Yun/DeepSqueak-Pipeline" },
+  { id: "proj-immuno", no: "02", domain: "Bioimage Analysis", title: "Immunohistochemistry Pipeline",
+    front: "Python pipeline for interactive IHC imaging with RGB controls.",
+    back: "Built a Python pipeline for immunohistochemistry imaging that loads and displays TIFF files with interactive per-channel RGB intensity controls. Maintains a custom Python package for reproducible analysis across the research team.",
+    meta: ["2024–2026", "Python · Pandas · Pillow", "Developer"], github: "https://github.com/Zuriahn-Yun/Immunohistochemistry-Pipeline" },
+  { id: "proj-gramstain", no: "03", domain: "Bioimage Analysis", title: "Gram Stain Pipeline",
+    front: "Scalable image analysis for gut proliferation in ASD mouse models.",
+    back: "Developed Python image analysis pipelines using Pillow to study gut proliferation in ASD and WT mouse models, assessing effects of CBD and terpene therapy. Enabled team-wide access to high-throughput microscopy results.",
+    meta: ["2024–2026", "Python · Pandas · Pillow", "Developer"], github: "https://github.com/Zuriahn-Yun/Gram-Stain-Pipeline" },
+  { id: "proj-kelp", no: "04", domain: "Environmental / 3D Viz", title: "KELP",
+    front: "3D pollution simulation platform — DubHacks 2025.",
+    back: "Interactive platform built at DubHacks 2025 using real environmental data to simulate pollution scenarios across Washington State. Features 3D terrain visuals to model how pollution spreads under different conditions.",
+    meta: ["Oct 2025", "Python", "Full Stack"], github: "https://github.com/israelavendanojr/dubhacks-2025" },
+  { id: "proj-crowd-vision", no: "05", domain: "Computer Vision / AI", title: "Crowd Vision",
+    front: "Real-time crowd analysis with Llama 4 + CNN → RAG pipeline.",
+    back: "Full-stack hackathon project integrating the Llama 4 API with a custom GRID-based CNN → RAG pipeline for real-time crowd analysis and scenario assessment.",
+    meta: ["2025", "Python · Llama 4 API", "Backend / ML"], github: "https://github.com/israelavendanojr/llama-hackathon" },
+  { id: "proj-pathora", no: "06", domain: "EdTech / AI", title: "Pathora",
+    front: "AI-powered learning pathways — built in 6 hours.",
+    back: "Built the backend of a full-stack web application during a 6-hour hackathon using Python and React, integrating an AI agent to generate personalized learning pathways and improve accessibility to education.",
+    meta: ["Spring 2025", "React · Python · Flask", "Backend"], github: "https://github.com/israelavendanojr/pathora" },
+  { id: "proj-neural-net", no: "07", domain: "Machine Learning", title: "Neural Network from Scratch",
+    front: "Full deep neural network in Python — no ML frameworks.",
+    back: "Implemented a deep neural network from scratch in Python, including forward/backward propagation, gradient descent, activation functions, and loss computation — without TensorFlow or PyTorch.",
+    meta: ["WWU", "Python · NumPy", "Solo"], github: null },
+  { id: "proj-qubit", no: "08", domain: "Quantum Computing", title: "Qubit Simulation",
+    front: "Python simulator for quantum states and Hermitian observables.",
+    back: "Developed a Python simulator for a single qubit that models quantum states and observables as Hermitian matrices and generates random Hermitian matrices. Foundation for future multi-qubit extensions.",
+    meta: ["WWU", "Python · NumPy", "Solo"], github: "https://github.com/Zuriahn-Yun/Sample-Based-Quantum-Diagonalization-Simulation/tree/main" },
+  { id: "proj-energy", no: "09", domain: "Data Science / Stats", title: "Building Energy Usage Model",
+    front: "Regression model predicting building energy consumption.",
+    back: "Created a regression model predicting building energy usage based on size, temperature, and occupancy. Building type and square footage had the largest impact. Full statistical analysis and presentation.",
+    meta: ["WWU", "Minitab", "Solo"], github: null },
+  { id: "proj-schedule", no: "10", domain: "Automation", title: "Schedule Automation",
+    front: "5 Power Automate workflows with Microsoft Teams integration.",
+    back: "Developed five Microsoft Power Automate workflows for the WWU IT department integrated with Teams. Clean, scalable design for easy copy-paste deployment. Reduced manual scheduling overhead by 30%.",
+    meta: ["WWU IT Dept.", "Power Automate · Teams", "Developer"], github: null },
+  { id: "proj-trading", no: "11", domain: "Finance / Software", title: "Java Trading Simulation",
+    front: "Stock trading simulator with MySQL and moving averages.",
+    back: "Java program connecting to a MySQL database to pull historical stock data and simulate trading. Adjusts for stock splits, uses moving averages for buy/sell decisions, and evaluates strategy performance over time.",
+    meta: ["WWU", "Java · SQL", "Solo"], github: null },
+  { id: "proj-wordhunt", no: "12", domain: "Algorithms", title: "iOS Word Hunt Solver",
+    front: "DFS word finder against an English dictionary.",
+    back: "Takes a Word Hunt board as input and uses depth-first search to find all valid words, cross-referencing a full English dictionary. A fun exercise in graph traversal.",
+    meta: ["Personal", "Python", "Solo"], github: "https://github.com/Zuriahn-Yun/WordHuntSolver/blob/main/solver.py" },
+  { id: "proj-phylo", no: "13", domain: "Bioinformatics", title: "Phylogenetic Tree",
+    front: "Java agglomerative clustering from raw genetic data.",
+    back: "Java application generating a complete phylogenetic tree from genetic data using agglomerative clustering. Calculates pairwise genetic distances and merges closest pairs iteratively until one tree remains.",
+    meta: ["WWU", "Java", "Solo"], github: null },
+  { id: "proj-racket", no: "14", domain: "Programming Languages", title: "Racket Interpreter",
+    front: "Full interpreter and parser for Racket — written in Racket.",
+    back: "Designed and implemented a full interpreter and parser for the Racket language from scratch. Complete parsing pipeline, lexical scope, evaluation rules, closures, and higher-order functions.",
+    meta: ["WWU", "Racket", "Solo"], github: null },
+  { id: "proj-poisson", no: "15", domain: "Statistics", title: "Poisson vs Binomial",
+    front: "Statistical comparison of two distributions.",
+    back: "Compared Binomial and Poisson distributions across varying parameters using mean comparison and R² from curve fitting. Found convergence when n is large and p is small — with practical implications for model selection.",
+    meta: ["WWU", "R Studio", "Solo"], github: null },
+];
+
+function ProjectCard({ p, flipped, onFlip, highlight }) {
+  return (
+    <div id={`project-${p.id}`} className={`proj ${flipped ? "is-flipped" : ""} ${highlight ? "is-highlight" : ""}`}>
+      <button className="proj__inner" onClick={onFlip} aria-pressed={flipped}>
+        <div className="proj__face proj__face--front">
+          <div className="proj__top">
+            <span className="proj__no">{p.no}</span>
+            <span className="proj__domain">{p.domain}</span>
+          </div>
+          <div className="proj__art" aria-hidden="true">
+            <div className="proj__art-inner"><span>{p.no}</span></div>
+          </div>
+          <div className="proj__title">{p.title}</div>
+          <div className="proj__hook">{p.front}</div>
+          <div className="proj__cta"><span>Read more</span><span className="proj__arrow">→</span></div>
+        </div>
+        <div className="proj__face proj__face--back">
+          <div className="proj__top">
+            <span className="proj__no">{p.no}</span>
+            <span className="proj__back-label">{p.domain}</span>
+          </div>
+          <div className="proj__back-body">{p.back}</div>
+          <div className="proj__back-meta">
+            {p.meta.map((m, i) => (
+              <div key={i} className="proj__back-meta-cell">
+                <span>0{i+1}</span><span>{m}</span>
+              </div>
+            ))}
+          </div>
+          <div className="proj__cta proj__cta--back">
+            {p.github ? (
+              <a href={p.github} target="_blank" rel="noopener noreferrer"
+                 onClick={e => e.stopPropagation()} style={{ color: "var(--fg)", textDecoration: "none" }}>
+                View on GitHub ↗
+              </a>
+            ) : <span>← Back</span>}
+          </div>
+        </div>
+      </button>
+    </div>
+  );
+}
+
+function ProjectsSection({ flippedId, setFlippedId, highlightId }) {
+  return (
+    <section className="section" id="projects">
+      <SectionLabel>Projects</SectionLabel>
+      <div className="projs">
+        {PROJECTS.map(p => (
+          <ProjectCard
+            key={p.id}
+            p={p}
+            flipped={flippedId === p.id}
+            onFlip={() => setFlippedId(flippedId === p.id ? null : p.id)}
+            highlight={highlightId === p.id}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 //  CONTACT
 // ============================================================
 function Contact() {
@@ -538,9 +666,18 @@ function App() {
     setTweak("categoryColors", { ...(t.categoryColors || {}), [name]: value });
   };
 
+  const [flippedProjectId, setFlippedProjectId] = useState(null);
+  const [highlightProjectId, setHighlightProjectId] = useState(null);
+
   const handleOpenProject = (id) => {
     if (!PROJECT_IDS.has(id)) return;
-    window.location.href = `Projects.html#project-${id}`;
+    setFlippedProjectId(id);
+    setHighlightProjectId(id);
+    setTimeout(() => {
+      const el = document.getElementById(`project-${id}`);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 60);
+    setTimeout(() => setHighlightProjectId(null), 2400);
   };
 
   return (
@@ -549,6 +686,7 @@ function App() {
       <main>
         <Work />
         <TimelineSection categoryMap={categoryMap} onOpenProject={handleOpenProject} isLinkable={isLinkable} />
+        <ProjectsSection flippedId={flippedProjectId} setFlippedId={setFlippedProjectId} highlightId={highlightProjectId} />
         <Contact />
       </main>
       <TweaksPanel>

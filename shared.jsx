@@ -60,7 +60,7 @@ function Nav({ page = "home", theme, onToggleTheme }) {
 
   _useEffect(() => {
     if (page !== "home") return;
-    const ids = ["work", "timeline", "contact"];
+    const ids = ["work", "timeline", "projects", "contact"];
     const onScroll = () => {
       let cur = "work";
       for (const id of ids) {
@@ -76,7 +76,6 @@ function Nav({ page = "home", theme, onToggleTheme }) {
   }, [page]);
 
   const hrefFor = (id) => {
-    if (id === "projects") return "Projects.html";
     return page === "home" ? `#${id}` : `Portfolio.html#${id}`;
   };
   const items = [
