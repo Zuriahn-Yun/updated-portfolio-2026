@@ -56,70 +56,55 @@ const ACCENT_OPTIONS = ["#3B82F6", "#F59E0B", "#A855F7", "#22D3EE", "#10B981"];
 // ============================================================
 const TIMELINE = [
   {
-    type: "Project",
-    title: "[ Capstone or thesis project ]",
-    start: "2026-01", end: "2026-05",
-    projectId: "proj-01",
-    desc: "[ The signature project for 2026. Question, method, key tools, and outcome. ]"
-  },
-  {
     type: "Work",
-    title: "[ Help desk role ]",
-    start: "2024-09", end: "2026-06",
-    desc: "[ Long-running multi-year role. What you owned, how the work evolved, one or two highlights. ]"
+    title: "Estimator — Laser Underground",
+    start: "2026-03",
+    end: "present",
+    desc: "Estimating costs for underground utility construction projects in Seattle. Joined part-time in March 2026, transitioning to full-time in June 2026."
   },
   {
-    type: "Internship",
-    title: "[ Summer internship ]",
-    start: "2025-06", end: "2025-08",
-    desc: "[ Where you interned, what you owned, scope of the work, and what you shipped. ]"
+    type: "Project",
+    title: "Research Data Pipelines",
+    start: "2024-09",
+    end: "2026-06",
+    projectId: "proj-deepsqueak",
+    desc: "Three Python image-analysis pipelines for neuroscience research: DeepSqueak batch audio processing for mouse ultrasonic vocalizations, immunohistochemistry TIFF visualization with interactive RGB controls, and gut-proliferation gram stain analysis for ASD/WT mouse models."
   },
   {
     type: "Case study",
-    title: "[ Datathon entry ]",
-    start: "2025-03-14", end: "2025-03-16",
-    projectId: "proj-02",
-    desc: "[ A weekend datathon. Note placement, team size, and your contribution. ]"
+    title: "KELP — DubHacks 2025",
+    start: "2025-10-18",
+    end: "2025-10-19",
+    projectId: "proj-kelp",
+    desc: "Built at DubHacks 2025. An interactive platform using real environmental data to simulate pollution scenarios across Washington State, featuring 3D terrain visuals to model and visualize how pollution spreads under different conditions."
+  },
+  {
+    type: "Case study",
+    title: "Crowd Vision — Llama Hackathon",
+    start: "2025-11",
+    end: "2025-11",
+    projectId: "proj-crowd-vision",
+    desc: "Full-stack hackathon project integrating the Llama 4 API with a custom ensemble backend — GRID-based CNN → API → RAG pipeline — for real-time crowd analysis and scenario assessment."
+  },
+  {
+    type: "Case study",
+    title: "Pathora — 6-Hour Hackathon",
+    start: "2025-04",
+    end: "2025-04",
+    projectId: "proj-pathora",
+    desc: "Built the Python/Flask backend in 6 hours, integrating an AI agent to generate personalized learning pathways and increase accessibility to education."
   },
   {
     type: "Volunteering",
-    title: "[ Volunteering — e.g. tutoring ]",
-    start: "2024-02", end: "2025-12",
-    desc: "[ Volunteer work. Who you served, the cadence, and what you contributed. ]"
-  },
-  {
-    type: "Club",
-    title: "[ Club / society leadership ]",
-    start: "2023-09", end: "2025-06",
-    desc: "[ Multi-year club. Role, members impacted, events run. ]"
-  },
-  {
-    type: "Internship",
-    title: "[ First industry role ]",
-    start: "2024-06", end: "2024-09"
-  },
-  {
-    type: "Project",
-    title: "[ Side project or research ]",
-    start: "2024-02", end: "2024-12",
-    projectId: "proj-03",
-    desc: "[ Self-directed project. Question, approach, what you learned. ]"
-  },
-  {
-    type: "Case study",
-    title: "[ Weekend hackathon ]",
-    start: "2024-10-19", end: "2024-10-20",
-    desc: "[ A 36-hour hackathon. Theme, your contribution, what you built. ]"
-  },
-  {
-    type: "Project",
-    title: "[ Early personal project ]",
-    start: "2023-03", end: "2023-08"
+    title: "Dog Walker — City of Whatcom",
+    start: "2024-09",
+    end: "2025-11",
+    desc: "Volunteered as a dog walker for the City of Whatcom from September 2024 through November 2025."
   },
 ];
 
 // IDs that exist on the Projects page — used to validate deep links.
-const PROJECT_IDS = new Set(["proj-01", "proj-02", "proj-03"]);
+const PROJECT_IDS = new Set(["proj-deepsqueak", "proj-kelp", "proj-crowd-vision", "proj-pathora"]);
 
 // ============================================================
 //  TIME HELPERS (day-level precision)
@@ -336,7 +321,7 @@ function Work() {
   return (
     <section className="section section--first" id="work">
       <div className="intro">
-        <h1 className="intro__name"><Placeholder italic={false}>[ Your Name ]</Placeholder></h1>
+        <h1 className="intro__name">Zuriahn Yun</h1>
         <div className="intro__role">Data Science student <span className="amp">&amp;</span> Estimator</div>
       </div>
       <SectionLabel>Work</SectionLabel>
@@ -344,26 +329,26 @@ function Work() {
         <div className="work__current">
           <div className="work__l">
             <div className="work__status"><span className="dot dot--pulse" />Current</div>
-            <div className="work__period"><Placeholder>[ Start date ]</Placeholder> — Present</div>
+            <div className="work__period">Mar 2026 — Present</div>
           </div>
           <div className="work__c">
             <div className="work__role">Estimator</div>
-            <div className="work__co"><Placeholder>[ Company name ]</Placeholder></div>
+            <div className="work__co">Laser Underground</div>
             <p className="work__desc">
-              <Placeholder block>[ 2–3 sentences on what you estimate, the kind of projects, the tools and methods you use, and the scale of what comes across your desk. ]</Placeholder>
+              Estimating costs for underground utility construction projects across the Seattle area. Joined part-time in March 2026 while completing my degree, transitioning to full-time in June 2026. Applying data analysis and quantitative reasoning to quantity takeoffs, bid preparation, and project scoping.
             </p>
             <div className="work__chips">
-              <span className="chip"><Placeholder>[ Skill ]</Placeholder></span>
-              <span className="chip"><Placeholder>[ Skill ]</Placeholder></span>
-              <span className="chip"><Placeholder>[ Skill ]</Placeholder></span>
-              <span className="chip"><Placeholder>[ Skill ]</Placeholder></span>
+              <span className="chip">Cost Estimation</span>
+              <span className="chip">Quantity Takeoff</span>
+              <span className="chip">Data Analysis</span>
+              <span className="chip">Excel</span>
             </div>
           </div>
           <div className="work__r">
             <div className="work__r-k">Location</div>
-            <div className="work__r-v"><Placeholder>[ City ]</Placeholder></div>
+            <div className="work__r-v">Seattle, WA</div>
             <div className="work__r-k">Type</div>
-            <div className="work__r-v"><Placeholder>[ Full / Part-time ]</Placeholder></div>
+            <div className="work__r-v">Part-time → Full-time</div>
           </div>
         </div>
       </div>
@@ -380,23 +365,23 @@ function Contact() {
       <SectionLabel>Contact</SectionLabel>
       <div className="contact">
         <div className="contact__l">
-          <p className="contact__p"><Placeholder>[ One-line invitation ]</Placeholder></p>
-          <a className="contact__mail" href="mailto:">
-            <Placeholder>[ your.email@domain.com ]</Placeholder>
+          <p className="contact__p">Open to opportunities, collaborations, and conversations.</p>
+          <a className="contact__mail" href="mailto:yunzuriahn@gmail.com">
+            yunzuriahn@gmail.com
             <span>↗</span>
           </a>
         </div>
         <div className="contact__r">
-          <a className="social" href="#">
+          <a className="social" href="https://www.linkedin.com/in/zuriahnyun/" target="_blank" rel="noopener noreferrer">
             <span className="social__k">01</span>
             <span className="social__l">LinkedIn</span>
-            <span className="social__v"><Placeholder>[ /in/handle ]</Placeholder></span>
+            <span className="social__v">/in/zuriahnyun</span>
             <span className="social__a">↗</span>
           </a>
-          <a className="social" href="#">
+          <a className="social" href="https://github.com/Zuriahn-Yun" target="_blank" rel="noopener noreferrer">
             <span className="social__k">02</span>
             <span className="social__l">GitHub</span>
-            <span className="social__v"><Placeholder>[ /handle ]</Placeholder></span>
+            <span className="social__v">/Zuriahn-Yun</span>
             <span className="social__a">↗</span>
           </a>
           <a className="social" href="#">
@@ -408,7 +393,7 @@ function Contact() {
         </div>
       </div>
       <footer className="footer">
-        <div>© 2026 · <Placeholder italic={false}>[ Your Name ]</Placeholder></div>
+        <div>© 2026 · Zuriahn Yun</div>
       </footer>
     </section>
   );
