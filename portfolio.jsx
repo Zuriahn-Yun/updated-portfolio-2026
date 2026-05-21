@@ -13,7 +13,8 @@ const TWEAK_DEFAULTS = {
     "Project":      "#FACC15",
     "Case study":   "#FB923C",
     "Volunteering": "#F87171",
-    "Club":         "#F87171"
+    "Club":         "#F87171",
+    "Education":    "#A78BFA"
   }
 };
 
@@ -32,8 +33,7 @@ const CATEGORIES = {
   "Case study":   { color: "#FB923C", swatches: ["#FB923C","#F97316","#FDBA74","#EA580C"], linkable: true  },
   "Volunteering": { color: "#F87171", swatches: ["#F87171","#EF4444","#FCA5A5","#DC2626"], linkable: false },
   "Club":         { color: "#F87171", swatches: ["#F87171","#EF4444","#FCA5A5","#DC2626"], linkable: false },
-  // To add a new category, drop a new line here, e.g.:
-  // "Research": { color: "#22D3EE", swatches: ["#22D3EE","#0EA5E9","#06B6D4","#67E8F9"], linkable: true },
+  "Education":    { color: "#A78BFA", swatches: ["#A78BFA","#8B5CF6","#C4B5FD","#7C3AED"], linkable: false },
 };
 
 const FONT_SETS = {
@@ -139,6 +139,13 @@ const TIMELINE = [
     start: "2023-06",
     end: "2024-09",
     desc: "Led community outreach initiatives for the Vietnamese Student Association at Western Washington University."
+  },
+  {
+    type: "Education",
+    title: "B.S. Data Science — Western Washington University",
+    start: "2022-09",
+    end: "2026-06",
+    desc: "Bachelor of Science in Data Science with minors in Mathematics and Economics. Bellingham, WA."
   },
 ];
 
