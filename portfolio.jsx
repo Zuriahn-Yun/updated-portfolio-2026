@@ -55,28 +55,52 @@ const ACCENT_OPTIONS = ["#3B82F6", "#F59E0B", "#A855F7", "#22D3EE", "#10B981"];
 //  type must match a key in CATEGORIES above.
 // ============================================================
 const TIMELINE = [
+  // ── Current ───────────────────────────────────────────────
   {
     type: "Work",
-    title: "Estimator — Laser Underground",
+    title: "Junior Estimator — Laser Underground & Earthworks",
     start: "2026-03",
     end: "present",
-    desc: "Estimating costs for underground utility construction projects in Seattle. Joined part-time in March 2026, transitioning to full-time in June 2026."
+    desc: "Estimating costs for underground utility construction across the Seattle area. Applying data analysis and quantitative reasoning to quantity takeoffs, bid preparation, and project scoping for a DBE/MWBE/SBE-certified contractor."
+  },
+  // ── WWU Concurrent Roles ──────────────────────────────────
+  {
+    type: "Work",
+    title: "Research Assistant — Software Vulnerability (WWU)",
+    start: "2025-09",
+    end: "present",
+    desc: "Conduct code reviews and static analysis on AI-generated software, systematically identifying logic errors and security vulnerabilities. Document recurring bug patterns to refine prompt engineering strategies and apply QA methodologies to enhance software robustness."
   },
   {
-    type: "Project",
-    title: "Research Data Pipelines",
-    start: "2024-09",
-    end: "2026-06",
-    projectId: "proj-deepsqueak",
-    desc: "Three Python image-analysis pipelines for neuroscience research: DeepSqueak batch audio processing for mouse ultrasonic vocalizations, immunohistochemistry TIFF visualization with interactive RGB controls, and gut-proliferation gram stain analysis for ASD/WT mouse models."
+    type: "Club",
+    title: "Analyst — Student Managed Investment Fund",
+    start: "2025-09",
+    end: "present",
+    desc: "Manage a $1M portfolio through quantitative equity research and financial modeling to drive asset allocation decisions and risk mitigation strategies."
   },
+  {
+    type: "Work",
+    title: "Research Assistant — Kaplan Lab",
+    start: "2025-03",
+    end: "present",
+    projectId: "proj-deepsqueak",
+    desc: "Analyze gut proliferation in ASD and WT mouse models using Python image analysis. Design and implement data pipelines to preprocess large TIFF image and video datasets. Leverage computer vision libraries to extract behavioral features from mouse model recordings."
+  },
+  {
+    type: "Work",
+    title: "Computer Science Tutor — WWU",
+    start: "2025-02",
+    end: "2026-01",
+    desc: "Tutored Western Washington University students in computer science concepts and coursework."
+  },
+  // ── Hackathons ────────────────────────────────────────────
   {
     type: "Case study",
     title: "KELP — DubHacks 2025",
     start: "2025-10-18",
     end: "2025-10-19",
     projectId: "proj-kelp",
-    desc: "Built at DubHacks 2025. An interactive platform using real environmental data to simulate pollution scenarios across Washington State, featuring 3D terrain visuals to model and visualize how pollution spreads under different conditions."
+    desc: "Built at DubHacks 2025. An interactive platform using real environmental data to simulate pollution scenarios across Washington State, featuring 3D terrain visuals."
   },
   {
     type: "Case study",
@@ -84,7 +108,7 @@ const TIMELINE = [
     start: "2025-11",
     end: "2025-11",
     projectId: "proj-crowd-vision",
-    desc: "Full-stack hackathon project integrating the Llama 4 API with a custom ensemble backend — GRID-based CNN → API → RAG pipeline — for real-time crowd analysis and scenario assessment."
+    desc: "Full-stack hackathon integrating the Llama 4 API with a custom GRID-based CNN to RAG pipeline for real-time crowd analysis and scenario assessment."
   },
   {
     type: "Case study",
@@ -92,14 +116,29 @@ const TIMELINE = [
     start: "2025-04",
     end: "2025-04",
     projectId: "proj-pathora",
-    desc: "Built the Python/Flask backend in 6 hours, integrating an AI agent to generate personalized learning pathways and increase accessibility to education."
+    desc: "Built the Python/Flask backend in 6 hours, integrating an AI agent to generate personalized learning pathways and improve accessibility to education."
+  },
+  // ── Earlier ───────────────────────────────────────────────
+  {
+    type: "Work",
+    title: "IT Support Specialist — WWU Help Desk",
+    start: "2024-09",
+    end: "present",
+    desc: "Developed automated scheduling scripts with Microsoft Power Automate, reducing administrative overhead by 30%. Managed ticket lifecycle for 200+ users via Jira, maintaining a 95% first-contact resolution rate."
   },
   {
     type: "Volunteering",
     title: "Dog Walker — City of Whatcom",
     start: "2024-09",
     end: "2025-11",
-    desc: "Volunteered as a dog walker for the City of Whatcom from September 2024 through November 2025."
+    desc: "Volunteered as a dog walker for the City of Whatcom."
+  },
+  {
+    type: "Club",
+    title: "Community Outreach Coordinator — Vietnamese Student Association",
+    start: "2023-06",
+    end: "2024-09",
+    desc: "Led community outreach initiatives for the Vietnamese Student Association at Western Washington University."
   },
 ];
 
@@ -332,10 +371,10 @@ function Work() {
             <div className="work__period">Mar 2026 — Present</div>
           </div>
           <div className="work__c">
-            <div className="work__role">Estimator</div>
-            <div className="work__co">Laser Underground</div>
+            <div className="work__role">Junior Estimator</div>
+            <div className="work__co">Laser Underground & Earthworks, Inc.</div>
             <p className="work__desc">
-              Estimating costs for underground utility construction projects across the Seattle area. Joined part-time in March 2026 while completing my degree, transitioning to full-time in June 2026. Applying data analysis and quantitative reasoning to quantity takeoffs, bid preparation, and project scoping.
+              Estimating costs for underground utility construction across the Seattle area. Applying data analysis and quantitative reasoning to quantity takeoffs, bid preparation, and project scoping for a DBE/MWBE/SBE-certified contractor.
             </p>
             <div className="work__chips">
               <span className="chip">Cost Estimation</span>
