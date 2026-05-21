@@ -216,14 +216,12 @@ function processTimeline(entries) {
 
   const minDay = Math.min(...enriched.map(e => e.startDay));
   const maxDay = Math.max(...enriched.map(e => e.endDay));
-  const FLOOR_YEAR = 2022;
-  const dataStartYear = new Date(minDay * ONE_DAY).getFullYear();
-  const dataEndYear   = new Date(maxDay * ONE_DAY).getFullYear();
-  const todayYear     = new Date().getFullYear();
-  const startYear = Math.min(FLOOR_YEAR, dataStartYear);
-  const endYear   = Math.max(todayYear, dataEndYear);
-  const axisStart = dayIdx(new Date(startYear, 0, 1));
-  const axisEnd   = dayIdx(new Date(endYear + 1, 0, 1));
+  // Axis starts exactly at the earliest entry — no leading empty space.
+  // Axis ends at the later of today or the last entry.
+  const axisStart = minDay;
+  const axisEnd   = Math.max(maxDay, dayIdx(new Date()));
+  const startYear = new Date(minDay * ONE_DAY).getFullYear();
+  const endYear   = new Date(axisEnd * ONE_DAY).getFullYear();
   return {
     entries: enriched,
     axisStart, axisEnd, axisSpan: axisEnd - axisStart,
@@ -308,19 +306,26 @@ function HorizontalTimeline({ categoryMap, onOpenProject, isLinkable }) {
       <div className="htl__chart">
         <div className="htl__axis">
           {proc.years.map(y => {
-            const nextDay = dayIdx(new Date(y + 1, 0, 1));
-            const w = ((nextDay - dayIdx(new Date(y, 0, 1))) / proc.axisSpan) * 100;
+            // Clip each year band to the actual axis bounds so no label overhangs.
+            const bandStart = Math.max(proc.axisStart, dayIdx(new Date(y,     0, 1)));
+            const bandEnd   = Math.min(proc.axisEnd,   dayIdx(new Date(y + 1, 0, 1)));
+            if (bandStart >= bandEnd) return null;
+            const left = ((bandStart - proc.axisStart) / proc.axisSpan) * 100;
+            const w    = ((bandEnd   - bandStart)      / proc.axisSpan) * 100;
             return (
-              <span key={y} className="htl__year-label" style={{ left: `${yearPct(y)}%`, width: `${w}%` }}>
+              <span key={y} className="htl__year-label" style={{ left: `${left}%`, width: `${w}%` }}>
                 <span>{y}</span>
               </span>
             );
           })}
         </div>
         <div className="htl__grid">
-          {proc.years.map(y => (
-            <span key={y} className="htl__grid-line" style={{ left: `${yearPct(y)}%` }} />
-          ))}
+          {proc.years.map(y => {
+            // Only draw a grid line for Jan 1 if it falls strictly inside the axis.
+            const jan1 = dayIdx(new Date(y, 0, 1));
+            if (jan1 <= proc.axisStart || jan1 >= proc.axisEnd) return null;
+            return <span key={y} className="htl__grid-line" style={{ left: `${pctLeft(jan1)}%` }} />;
+          })}
           <span className="htl__grid-line htl__grid-line--end" style={{ left: "100%" }} />
           {todayInRange && (
             <span className="htl__today" style={{ left: `${pctLeft(todayDay)}%` }}>
