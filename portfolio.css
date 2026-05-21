@@ -296,10 +296,8 @@
 
   .htl__chart {
     position: relative;
-    overflow-x: auto;
-    scrollbar-width: none;
+    overflow: hidden;
   }
-  .htl__chart::-webkit-scrollbar { display: none; }
   .htl__axis {
     position: relative;
     height: 28px;

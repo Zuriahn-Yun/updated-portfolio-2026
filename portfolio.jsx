@@ -273,8 +273,8 @@ function HorizontalTimeline({ categoryMap, onOpenProject, isLinkable }) {
   const lanes = useMemo(() => laneAssign(proc.entries, 21), [proc.entries]);
 
   const LANE_H = 26, LANE_GAP = 6;
-  const pctLeft  = (day) => ((day - proc.axisStart) / proc.axisSpan) * 100;
-  const pctWidth = (e)   => (e.days / proc.axisSpan) * 100;
+  const pctLeft  = (day) => Math.max(0, Math.min(100, ((day - proc.axisStart) / proc.axisSpan) * 100));
+  const pctWidth = (e)   => Math.max(0, Math.min(100 - pctLeft(e.startDay), (e.days / proc.axisSpan) * 100));
   const yearPct  = (y)   => pctLeft(dayIdx(new Date(y, 0, 1)));
   const chartH   = lanes.count * (LANE_H + LANE_GAP) + 12;
 
