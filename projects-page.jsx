@@ -259,9 +259,7 @@ function App() {
         <header className="page-head">
           <div className="page-head__eyebrow">Projects · {String(PROJECTS.length).padStart(2, "0")}</div>
           <h1 className="page-head__title">Projects</h1>
-          <p className="page-head__sub">
-            Data science, neuroscience research pipelines, hackathon builds, and software projects from my time at WWU and beyond.
-          </p>
+          <p className="page-head__sub"></p>
         </header>
 
         <section className="section" style={{ paddingTop: 0, borderBottom: "none" }}>
