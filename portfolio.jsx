@@ -73,10 +73,10 @@ const TIMELINE = [
   },
   {
     type: "Club",
-    title: "Analyst — Student Managed Investment Fund",
+    title: "Data Analyst — Student Managed Investment Fund",
     start: "2025-09",
-    end: "present",
-    desc: "Manage a $1M portfolio through quantitative equity research and financial modeling to drive asset allocation decisions and risk mitigation strategies."
+    end: "2026-06",
+    desc: "Managed a $1M portfolio through quantitative equity research and financial modeling to drive asset allocation decisions and risk mitigation strategies."
   },
   {
     type: "Work",
@@ -92,6 +92,28 @@ const TIMELINE = [
     start: "2025-02",
     end: "2026-01",
     desc: "Tutored Western Washington University students in computer science concepts and coursework."
+  },
+  // ── Case Studies ──────────────────────────────────────────
+  {
+    type: "Case study",
+    title: "Boeing Supply Chain Case Study",
+    start: "2025-10",
+    end: "2025-12",
+    desc: "Analyzed and proposed solutions for a Boeing supply chain challenge. Fall 2025."
+  },
+  {
+    type: "Case study",
+    title: "UW Public Health Case Study",
+    start: "2026-01",
+    end: "2026-03",
+    desc: "Public health case study in collaboration with the University of Washington. Winter 2025–26."
+  },
+  {
+    type: "Case study",
+    title: "ARGUS Case Study",
+    start: "2026-03",
+    end: "2026-06",
+    desc: "Case study competition for ARGUS. Spring 2026."
   },
   // ── Hackathons ────────────────────────────────────────────
   {
@@ -209,17 +231,39 @@ function processTimeline(entries) {
   };
 }
 
-function laneAssign(entries, padDays = 21) {
-  const ordered = [...entries].sort((a, b) => a.startDay - b.startDay || a.endDay - b.endDay);
-  const laneEnds = [];
-  const map = new Map();
-  ordered.forEach(e => {
-    let lane = laneEnds.findIndex(end => end + padDays <= e.startDay);
-    if (lane === -1) { lane = laneEnds.length; laneEnds.push(e.endDay); }
-    else { laneEnds[lane] = e.endDay; }
-    map.set(e.id, lane);
+// Groups entries by type first, then packs non-overlapping items within each
+// type into the same lane row. TYPE_ORDER controls the top-to-bottom sequence.
+function laneAssign(entries, padDays = 14) {
+  const TYPE_ORDER = ["Education", "Work", "Internship", "Club", "Volunteering", "Project", "Case study"];
+
+  const typesSeen = [];
+  const groups = {};
+  entries.forEach(e => {
+    if (!groups[e.type]) { groups[e.type] = []; typesSeen.push(e.type); }
+    groups[e.type].push(e);
   });
-  return { count: laneEnds.length, get: (id) => map.get(id) };
+
+  typesSeen.sort((a, b) => {
+    const ia = TYPE_ORDER.indexOf(a), ib = TYPE_ORDER.indexOf(b);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
+
+  const map = new Map();
+  let currentLane = 0;
+
+  typesSeen.forEach(type => {
+    const group = [...groups[type]].sort((a, b) => a.startDay - b.startDay);
+    const subLaneEnds = [];
+    group.forEach(e => {
+      let sub = subLaneEnds.findIndex(end => end + padDays <= e.startDay);
+      if (sub === -1) { sub = subLaneEnds.length; subLaneEnds.push(e.endDay); }
+      else { subLaneEnds[sub] = e.endDay; }
+      map.set(e.id, currentLane + sub);
+    });
+    currentLane += Math.max(1, subLaneEnds.length);
+  });
+
+  return { count: currentLane, get: (id) => map.get(id) };
 }
 
 // ============================================================
@@ -411,7 +455,7 @@ function Contact() {
       <SectionLabel>Contact</SectionLabel>
       <div className="contact">
         <div className="contact__l">
-          <p className="contact__p">Open to opportunities, collaborations, and conversations.</p>
+          <p className="contact__p"></p>
           <a className="contact__mail" href="mailto:yunzuriahn@gmail.com">
             yunzuriahn@gmail.com
             <span>↗</span>
